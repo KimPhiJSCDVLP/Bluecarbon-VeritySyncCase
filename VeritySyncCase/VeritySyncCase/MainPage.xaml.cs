@@ -4,6 +4,7 @@ using VeritySyncCase.Models;
 using System.Management;
 using Windows.Devices.Enumeration;
 using Windows.Management.Deployment;
+using VeritySyncCase.Utils;
 #endif
 
 namespace VeritySyncCase;
@@ -16,7 +17,6 @@ public partial class MainPage : ContentPage
 
 #if WINDOWS
         mobileDeviceList = new List<DeviceInfoDto>();
-        var devices = DriveInfo.GetDrives();
         LoadConnectedMobileDevices();
         Thread backgroundThread = new Thread(DeviceConnectionTask);
         backgroundThread.IsBackground = true;
@@ -29,9 +29,17 @@ public partial class MainPage : ContentPage
     public static List<DeviceInfoDto> mobileDeviceList;
     async void OnSyncButtonClicked(object sender, EventArgs args)
     {
+        var destinationFolderPaths = new List<string>();
+        var drives = DriveInfo.GetDrives();
+
         foreach (var item in mobileDeviceList)
         {
-            //var output = AdbHelper.GetFilePathInDocuments("newtext.txt", item.DeviceName);
+            foreach (var driver in drives)
+            {
+                var destinationPath = driver + "BackUpFieldAppDatabase";
+                FileHelper.CreateFolder(destinationPath);
+                AdbHelper.GetFilePathInDocuments(destinationPath, item.DeviceId);
+            }
         }
     }
 
@@ -39,13 +47,10 @@ public partial class MainPage : ContentPage
     {
         // Create a WMI query to monitor device connection events
         WqlEventQuery query = new WqlEventQuery("SELECT * FROM __InstanceCreationEvent WITHIN 1 WHERE TargetInstance ISA 'Win32_USBControllerDevice'");
-
         // Create a management scope to connect to the root\cimv2 namespace
         ManagementScope scope = new ManagementScope("root\\cimv2");
-
         // Create a watcher to listen for events
         ManagementEventWatcher watcher = new ManagementEventWatcher(scope, query);
-
         // Subscribe to the event arrived event
         watcher.EventArrived += (sender, e) =>
         {
@@ -57,24 +62,23 @@ public partial class MainPage : ContentPage
             string deviceManufacturer = dependent["Manufacturer"]?.ToString();
 
             // Check if the device is a mobile device based on the manufacturer or any other criteria
-            if (!string.IsNullOrEmpty(deviceName) && !string.IsNullOrEmpty(deviceManufacturer) && IsMobileDevice(deviceManufacturer))
+            if (!string.IsNullOrEmpty(deviceName) && !string.IsNullOrEmpty(deviceName) && !string.IsNullOrEmpty(deviceManufacturer) && IsMobileDevice(deviceManufacturer))
             {
                 //var installed = CheckAppInstalled("com.example.blue_carbon", deviceName);
                 var existDevice = mobileDeviceList.FirstOrDefault(x => x.DeviceId == deviceId);
                 if (existDevice == null)
                 {
                     var deviceInfoDto = new DeviceInfoDto();
-                    deviceInfoDto.DeviceId = deviceId;
+                    string[] parts = deviceId.Split('\\');
+                    deviceInfoDto.DeviceId = (parts != null && parts.Length > 2) ? parts[2] : deviceId;
                     deviceInfoDto.DeviceName = deviceName;
                     deviceInfoDto.Manufacturer = deviceManufacturer;
                     mobileDeviceList.Add(deviceInfoDto);
                 }
             }
         };
-
         // Start listening for events
         watcher.Start();
-
         // Keep the background task running until the main thread exits
         while (true)
         {
@@ -125,7 +129,8 @@ public partial class MainPage : ContentPage
                 if (existDevice == null)
                 {
                     var deviceInfoDto = new DeviceInfoDto();
-                    deviceInfoDto.DeviceId = deviceId;
+                    string[] parts = deviceId.Split('\\');
+                    deviceInfoDto.DeviceId = (parts != null && parts.Length > 2) ? parts[2] : deviceId;
                     deviceInfoDto.DeviceName = deviceName;
                     deviceInfoDto.Manufacturer = deviceManufacturer;
                     mobileDeviceList.Add(deviceInfoDto);
@@ -134,10 +139,10 @@ public partial class MainPage : ContentPage
         }
     }
 
-    private bool IsMobileDevice(string manufacturer)
+    private bool IsMobileDevice(string deviceManufacturer)
     {
-        string[] mobileKeywords = { "Samsung", "Apple", "Tablet", "Google", "OnePlus", "Xiaomi", "Huawei", "LG", "Motorola" };
-        return mobileKeywords.Any(keyword => manufacturer.Contains(keyword, StringComparison.OrdinalIgnoreCase));
+        string[] mobileKeywords = { "Samsung", "Apple", "Tablet", "Google Pixel", "OnePlus", "Xiaomi", "Huawei", "LG", "Motorola", "Samsung Galaxy", "WinUsb Device" };
+        return mobileKeywords.Any(keyword => deviceManufacturer.Contains(keyword, StringComparison.OrdinalIgnoreCase));
     }
 #endif
 }
