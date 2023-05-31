@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VeritySyncCase.Platforms.Windows.Dto
+namespace VeritySyncCase.Models
 {
     public class DeviceInfoDto
     {

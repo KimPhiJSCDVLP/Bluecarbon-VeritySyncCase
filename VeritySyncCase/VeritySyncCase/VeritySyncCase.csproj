@@ -62,4 +62,8 @@
 	  <PackageReference Include="Xamarin.Essentials" Version="1.7.5" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Models\Dto\" />
+	</ItemGroup>
+
 </Project>
