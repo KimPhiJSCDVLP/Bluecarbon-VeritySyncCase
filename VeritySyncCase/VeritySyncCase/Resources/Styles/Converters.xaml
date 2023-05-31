@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                      xmlns:converters="clr-namespace:VeritySyncCase.Converter;assembly=VeritySyncCase">
+    <converters:EqualityToBooleanConverter x:Key="EqualityToBooleanConverter" />
+    <converters:DateTimeConverter x:Key="DateTimeConverter" />
+    <converters:TimeNoticeConverter x:Key="TimeNoticeConverter" />
+    <converters:LocalTimeConverter x:Key="LocalTimeConverter" />
+    <converters:IsListEmptyConverter x:Key="IsListEmptyConverter" />
+    <converters:GreaterToBooleanConverter x:Key="GreaterToBooleanConverter" />
+    <converters:IntEnumConverter x:Key="IntEnumConverter" />
+    <converters:MessageTimeConverter x:Key="MessageTimeConverter" />
+    <converters:NegateBooleanConverter x:Key="NegateBooleanConverter" />
+    <converters:CounterConverter x:Key="CounterConverter" />
+    <converters:PrefixConverter x:Key="PrefixConverter" />
+    <converters:BoolToNegativeConverter x:Key="BoolToNegativeConverter" />
+    <converters:FeatureVisibleConverter x:Key="FeatureVisibleConverter" />
+    <converters:HeightValueConverter x:Key="heightValueConverter" />
+    <converters:UnixDateTimeConverter x:Key="UnixDateTimeConverter" />
+    <converters:IsNotNullConverter x:Key="IsNotNullConverter" />
+    <converters:IsNullConverter x:Key="IsNullConverter" />
+    <converters:IsStringNotEmptyConverter x:Key="IsStringNotEmptyConverter" />
+    <converters:BackgroundValueConverter x:Key="BackgroundValueConverter" />
+    <converters:IndexToColorConverter x:Key="IndexToColorConverter" />
+</ResourceDictionary>

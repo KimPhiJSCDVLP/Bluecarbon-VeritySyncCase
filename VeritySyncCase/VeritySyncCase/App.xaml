@@ -8,7 +8,151 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+                <ResourceDictionary Source="Resources/Styles/FontFamily.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Converters.xaml" />
+                <ResourceDictionary Source="Resources/Styles/FontSizes.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <!--  Base Styles  -->
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource LightWhite}" />
+            </Style>
+
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource Blue}" />
+                <Setter Property="BarTextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="{StaticResource LightWhite}" />
+            </Style>
+
+            <Style x:Key="BaseLabel" TargetType="Label">
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontFamily" Value="FS-Medium" />
+                <Setter Property="FontSize" Value="{StaticResource FontSizeNormal}" />
+                <Setter Property="TextColor" Value="#3D4872" />
+
+            </Style>
+
+            <Style x:Key="BaseEntry" TargetType="Entry">
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="FontFamily" Value="FS-Medium" />
+                <Setter Property="BackgroundColor" Value="{StaticResource LightWhite}" />
+                <Setter Property="TextColor" Value="#3D4872" />
+            </Style>
+
+            <Style x:Key="BasePicker" TargetType="Picker">
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="FontFamily" Value="FS-Medium" />
+            </Style>
+
+            <Style x:Key="BaseButton" TargetType="Button">
+                <Setter Property="CornerRadius" Value="2" />
+                <Setter Property="Padding" Value="15" />
+                <Setter Property="FontFamily" Value="FS-Medium" />
+                <Setter Property="FontSize" Value="{StaticResource FontSizeNormal}" />
+            </Style>
+            <!--  Entry  -->
+            <Style BasedOn="{StaticResource BaseEntry}" TargetType="Entry" />
+            
+            <!--  Label  -->
+            <Style BasedOn="{StaticResource BaseLabel}" TargetType="Label" />
+            
+            <!--  Button  -->
+            <Style x:Key="GreenButton" BasedOn="{StaticResource BaseButton}" TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource LightWhite}" />
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Offset=".5" Color="#0492F2" />
+                            <GradientStop Offset=".5" Color="#0286DF" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="GrayButton" BasedOn="{StaticResource BaseButton}" TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource Black}" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Offset=".5" Color="{StaticResource LightBlack}" />
+                            <GradientStop Offset=".5" Color="{StaticResource LightBlack}" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="WhiteButton" BasedOn="{StaticResource BaseButton}" TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource Black}" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="BorderColor" Value="{StaticResource Black}" />
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Offset=".5" Color="{StaticResource LightWhite}" />
+                            <GradientStop Offset=".5" Color="{StaticResource LightWhite}" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="UploadButton" TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource LightWhite}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource Green}" />
+                <Setter Property="HeightRequest" Value="30" />
+            </Style>
+            
+            <!--  Boxview  -->
+            <Style x:Key="BoxViewSeparator" TargetType="BoxView">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="HeightRequest" Value=".75" />
+                <Setter Property="BackgroundColor" Value="{StaticResource Gray}" />
+            </Style>
+
+            <!--  Radio Button  -->
+            <ControlTemplate x:Key="RadioButtonTemplate">
+                <Grid Margin="0" Padding="0" BackgroundColor="Transparent" ColumnSpacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Margin="0" Padding="0" BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill">
+                        <Ellipse Fill="Transparent" HeightRequest="24" HorizontalOptions="Center" Stroke="#3D4872" StrokeThickness="2" VerticalOptions="Center" WidthRequest="24" />
+                        <Ellipse x:Name="Check" Fill="#3D4872" HeightRequest="14" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="14" />
+                    </Grid>
+                    <ContentPresenter Grid.Column="1" Margin="0" Padding="0" BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" />
+
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroupList>
+                            <VisualStateGroup x:Name="CheckedStates">
+                                <VisualState x:Name="Checked">
+                                    <VisualState.Setters>
+                                        <Setter TargetName="Check" Property="Opacity" Value="1" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked">
+                                    <VisualState.Setters>
+                                        <Setter TargetName="Check" Property="Opacity" Value="0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </VisualStateManager.VisualStateGroups>
+                </Grid>
+            </ControlTemplate>
+
+            <Style TargetType="RadioButton">
+                <Setter Property="ControlTemplate">
+                    <OnPlatform x:TypeArguments="ControlTemplate">
+                        <On Platform="Android" Value="{StaticResource RadioButtonTemplate}" />
+                    </OnPlatform>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

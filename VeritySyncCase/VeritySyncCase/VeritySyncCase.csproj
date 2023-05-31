@@ -30,6 +30,7 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <PackageIcon>logo_full.png</PackageIcon>
+    <DefaultLanguage>en-US</DefaultLanguage>
   </PropertyGroup>
 
 	<ItemGroup>
@@ -51,10 +52,141 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Assets\BadgeLogo.scale-100.png" />
+	  <None Remove="Assets\BadgeLogo.scale-125.png" />
+	  <None Remove="Assets\BadgeLogo.scale-150.png" />
+	  <None Remove="Assets\BadgeLogo.scale-200.png" />
+	  <None Remove="Assets\BadgeLogo.scale-400.png" />
+	  <None Remove="Assets\LargeTile.scale-100.png" />
+	  <None Remove="Assets\LargeTile.scale-125.png" />
+	  <None Remove="Assets\LargeTile.scale-150.png" />
+	  <None Remove="Assets\LargeTile.scale-200.png" />
+	  <None Remove="Assets\LargeTile.scale-400.png" />
+	  <None Remove="Assets\SmallTile.scale-100.png" />
+	  <None Remove="Assets\SmallTile.scale-125.png" />
+	  <None Remove="Assets\SmallTile.scale-150.png" />
+	  <None Remove="Assets\SmallTile.scale-200.png" />
+	  <None Remove="Assets\SmallTile.scale-400.png" />
+	  <None Remove="Assets\SplashScreen.scale-100.png" />
+	  <None Remove="Assets\SplashScreen.scale-125.png" />
+	  <None Remove="Assets\SplashScreen.scale-150.png" />
+	  <None Remove="Assets\SplashScreen.scale-200.png" />
+	  <None Remove="Assets\SplashScreen.scale-400.png" />
+	  <None Remove="Assets\Square44x44Logo.scale-100.png" />
+	  <None Remove="Assets\Square44x44Logo.scale-125.png" />
+	  <None Remove="Assets\Square44x44Logo.scale-150.png" />
+	  <None Remove="Assets\Square44x44Logo.scale-200.png" />
+	  <None Remove="Assets\Square44x44Logo.scale-400.png" />
+	  <None Remove="Assets\Square44x44Logo.targetsize-16.png" />
+	  <None Remove="Assets\Square44x44Logo.targetsize-16_altform-lightunplated.png" />
+	  <None Remove="Assets\Square44x44Logo.targetsize-16_altform-unplated.png" />
+	  <None Remove="Assets\Square44x44Logo.targetsize-24.png" />
+	  <None Remove="Assets\Square44x44Logo.targetsize-24_altform-lightunplated.png" />
+	  <None Remove="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+	  <None Remove="Assets\Square44x44Logo.targetsize-256.png" />
+	  <None Remove="Assets\Square44x44Logo.targetsize-256_altform-lightunplated.png" />
+	  <None Remove="Assets\Square44x44Logo.targetsize-256_altform-unplated.png" />
+	  <None Remove="Assets\Square44x44Logo.targetsize-32.png" />
+	  <None Remove="Assets\Square44x44Logo.targetsize-32_altform-lightunplated.png" />
+	  <None Remove="Assets\Square44x44Logo.targetsize-32_altform-unplated.png" />
+	  <None Remove="Assets\Square44x44Logo.targetsize-48.png" />
+	  <None Remove="Assets\Square44x44Logo.targetsize-48_altform-lightunplated.png" />
+	  <None Remove="Assets\Square44x44Logo.targetsize-48_altform-unplated.png" />
+	  <None Remove="Assets\SquareTitle.scale-100.png" />
+	  <None Remove="Assets\SquareTitle.scale-125.png" />
+	  <None Remove="Assets\SquareTitle.scale-150.png" />
+	  <None Remove="Assets\SquareTitle.scale-200.png" />
+	  <None Remove="Assets\SquareTitle.scale-400.png" />
+	  <None Remove="Assets\StoreLogo.scale-100.png" />
+	  <None Remove="Assets\StoreLogo.scale-125.png" />
+	  <None Remove="Assets\StoreLogo.scale-150.png" />
+	  <None Remove="Assets\StoreLogo.scale-200.png" />
+	  <None Remove="Assets\StoreLogo.scale-400.png" />
+	  <None Remove="Assets\WideLogo.scale-100.png" />
+	  <None Remove="Assets\WideLogo.scale-125.png" />
+	  <None Remove="Assets\WideLogo.scale-150.png" />
+	  <None Remove="Assets\WideLogo.scale-200.png" />
+	  <None Remove="Assets\WideLogo.scale-400.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Assets\BadgeLogo.scale-100.png" />
+	  <Content Include="Assets\BadgeLogo.scale-125.png" />
+	  <Content Include="Assets\BadgeLogo.scale-150.png" />
+	  <Content Include="Assets\BadgeLogo.scale-200.png" />
+	  <Content Include="Assets\BadgeLogo.scale-400.png" />
+	  <Content Include="Assets\LargeTile.scale-100.png" />
+	  <Content Include="Assets\LargeTile.scale-125.png" />
+	  <Content Include="Assets\LargeTile.scale-150.png" />
+	  <Content Include="Assets\LargeTile.scale-200.png" />
+	  <Content Include="Assets\LargeTile.scale-400.png" />
+	  <Content Include="Assets\SmallTile.scale-100.png" />
+	  <Content Include="Assets\SmallTile.scale-125.png" />
+	  <Content Include="Assets\SmallTile.scale-150.png" />
+	  <Content Include="Assets\SmallTile.scale-200.png" />
+	  <Content Include="Assets\SmallTile.scale-400.png" />
+	  <Content Include="Assets\SplashScreen.scale-100.png" />
+	  <Content Include="Assets\SplashScreen.scale-125.png" />
+	  <Content Include="Assets\SplashScreen.scale-150.png" />
+	  <Content Include="Assets\SplashScreen.scale-200.png" />
+	  <Content Include="Assets\SplashScreen.scale-400.png" />
+	  <Content Include="Assets\Square44x44Logo.scale-100.png" />
+	  <Content Include="Assets\Square44x44Logo.scale-125.png" />
+	  <Content Include="Assets\Square44x44Logo.scale-150.png" />
+	  <Content Include="Assets\Square44x44Logo.scale-200.png" />
+	  <Content Include="Assets\Square44x44Logo.scale-400.png" />
+	  <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+	  <Content Include="Assets\Square44x44Logo.targetsize-16_altform-lightunplated.png" />
+	  <Content Include="Assets\Square44x44Logo.targetsize-16_altform-unplated.png" />
+	  <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+	  <Content Include="Assets\Square44x44Logo.targetsize-24_altform-lightunplated.png" />
+	  <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+	  <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
+	  <Content Include="Assets\Square44x44Logo.targetsize-256_altform-lightunplated.png" />
+	  <Content Include="Assets\Square44x44Logo.targetsize-256_altform-unplated.png" />
+	  <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
+	  <Content Include="Assets\Square44x44Logo.targetsize-32_altform-lightunplated.png" />
+	  <Content Include="Assets\Square44x44Logo.targetsize-32_altform-unplated.png" />
+	  <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
+	  <Content Include="Assets\Square44x44Logo.targetsize-48_altform-lightunplated.png" />
+	  <Content Include="Assets\Square44x44Logo.targetsize-48_altform-unplated.png" />
+	  <Content Include="Assets\SquareTitle.scale-100.png" />
+	  <Content Include="Assets\SquareTitle.scale-125.png" />
+	  <Content Include="Assets\SquareTitle.scale-150.png" />
+	  <Content Include="Assets\SquareTitle.scale-200.png" />
+	  <Content Include="Assets\SquareTitle.scale-400.png" />
+	  <Content Include="Assets\StoreLogo.scale-100.png" />
+	  <Content Include="Assets\StoreLogo.scale-125.png" />
+	  <Content Include="Assets\StoreLogo.scale-150.png" />
+	  <Content Include="Assets\StoreLogo.scale-200.png" />
+	  <Content Include="Assets\StoreLogo.scale-400.png" />
+	  <Content Include="Assets\WideLogo.scale-100.png" />
+	  <Content Include="Assets\WideLogo.scale-125.png" />
+	  <Content Include="Assets\WideLogo.scale-150.png" />
+	  <Content Include="Assets\WideLogo.scale-200.png" />
+	  <Content Include="Assets\WideLogo.scale-400.png" />
+	</ItemGroup>
+  
+	<ItemGroup>
 	  <None Include="C:\Users\phi.lekim\Desktop\logo_full.png">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Resources\Styles\Converters.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\FontFamily.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\FontSizes.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\WelcomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>

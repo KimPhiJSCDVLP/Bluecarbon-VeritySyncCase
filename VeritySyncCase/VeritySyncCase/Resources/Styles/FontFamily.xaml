@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" >
+    <OnPlatform x:Key="FontRegular" x:TypeArguments="x:String">
+        <On Platform="Android" Value="Fonts/FiraSans-Regular.ttf#Fira Sans" />
+        <On Platform="iOS" Value="Fira Sans" />
+    </OnPlatform>
+    <OnPlatform x:Key="FontBold" x:TypeArguments="x:String">
+        <On Platform="Android" Value="Fonts/FiraSans-Bold.ttf#Fira Sans" />
+        <On Platform="iOS" Value="Fira Sans" />
+    </OnPlatform>
+    <OnPlatform x:Key="FontItalic" x:TypeArguments="x:String">
+        <On Platform="Android" Value="Fonts/FiraSans-Italic.ttf#Fira Sans" />
+        <On Platform="iOS" Value="Fira Sans" />
+    </OnPlatform>
+    <OnPlatform x:Key="FontBoldItalic" x:TypeArguments="x:String" >
+        <On Platform="Android" Value="Fonts/FiraSans-BoldItalic.ttf#Fira Sans" />
+        <On Platform="iOS" Value="Fira Sans" />
+    </OnPlatform>
+    <OnPlatform x:Key="FontAwesomeBrands" x:TypeArguments="x:String">
+        <On Platform="Android" Value="Fonts/FontAwesome5Brands.otf#Regular" />
+        <On Platform="iOS" Value="FontAwesome5Brands-Regular" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="FontAwesomeSolid" x:TypeArguments="x:String">
+        <On Platform="Android" Value="Fonts/FontAwesome5Solid.otf#Regular" />
+        <On Platform="iOS" Value="FontAwesome5Free-Solid" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="FontAwesomeRegular" x:TypeArguments="x:String">
+        <On Platform="Android" Value="Fonts/FontAwesome5Regular.otf#Regular" />
+        <On Platform="iOS" Value="FontAwesome5Free-Regular" />
+    </OnPlatform>
+</ResourceDictionary>
