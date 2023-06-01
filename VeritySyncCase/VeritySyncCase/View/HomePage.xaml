@@ -50,6 +50,14 @@
                                                     <CheckBox HorizontalOptions="StartAndExpand" 
                                                       VerticalOptions="StartAndExpand" 
                                                       Grid.Column="0" >
+                                                        <CheckBox.Triggers>
+                                                            <DataTrigger Binding="{Binding IsOnline}" TargetType="CheckBox" Value="True">
+                                                                <Setter Property="IsEnabled" Value="True" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding IsOnline}" TargetType="CheckBox" Value="False">
+                                                                <Setter Property="IsEnabled" Value="False" />
+                                                            </DataTrigger>
+                                                        </CheckBox.Triggers>
                                                     </CheckBox>
                                                     <StackLayout Grid.Column="1" 
                                                          HorizontalOptions="StartAndExpand" 
