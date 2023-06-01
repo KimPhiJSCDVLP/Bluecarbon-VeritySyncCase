@@ -1,4 +1,12 @@
-﻿using System.Diagnostics;
+﻿#if WINDOWS
+using SharpAdbClient;
+using SharpAdbClient.Exceptions;
+using System;
+using System.Diagnostics;
+using System.Reflection;
+using System.Text;
+using VeritySyncCase.Constants;
+using VeritySyncCase.Models;
 using Windows.Devices.Enumeration;
 using Windows.Storage;
 
@@ -32,33 +40,76 @@ namespace VeritySyncCase.Utils
 
     public static class AdbHelper
     {
-        public static string GetFilePathInDocuments(string destinationFolderPath, string deviceId)
+        public static List<DeviceData> GetDevices()
         {
-            var sourcePath = "/sdcard/Documents";
-            // Set the ADB command to list the file path in the documents folder on the specific device
-            string adbCommand = $"-s {deviceId} pull {sourcePath} {destinationFolderPath}";
-            // Create a new process start info for executing ADB
-            ProcessStartInfo processStartInfo = new ProcessStartInfo
+            var adbClient = new AdbClient();
+            return adbClient.GetDevices();
+        }
+
+        public static async Task<string> PullFilesFromDevices(string deviceId, List<string> destinationFolderPaths)
+        {
+            var tasks = new List<Task<string>>();
+
+            foreach (var destinationFolderPath in destinationFolderPaths)
+            {
+                tasks.Add(PullFilesFromDevice(deviceId, Constant.VERIRY_SOURCE_FOLDER, destinationFolderPath));
+            }
+
+            var results = await Task.WhenAll(tasks);
+            return string.Join(Environment.NewLine, results);
+        }
+
+        private static async Task<string> PullFilesFromDevice(string deviceId, string sourceFolderPath, string destinationFolderPath)
+        {
+            var adbCommand = $"-s {deviceId} pull \"{sourceFolderPath}\" \"{destinationFolderPath}\"";
+
+            var processInfo = new ProcessStartInfo
             {
                 FileName = "adb",
                 Arguments = adbCommand,
                 RedirectStandardOutput = true,
+                RedirectStandardError = true,
                 UseShellExecute = false,
                 CreateNoWindow = true
             };
 
-            // Start the process
-            Process process = new Process();
-            process.StartInfo = processStartInfo;
-            process.Start();
+            var output = await ExecuteCommandAsync(processInfo);
+            return $"Device ID: {deviceId}{Environment.NewLine}{output}";
+        }
 
-            // Read the output of the command
-            string output = process.StandardOutput.ReadToEnd();
+        private static async Task<string> ExecuteCommandAsync(ProcessStartInfo processInfo)
+        {
+            using (var process = new Process())
+            {
+                process.StartInfo = processInfo;
 
-            // Wait for the process to exit
-            process.WaitForExit();
+                var outputBuilder = new StringBuilder();
+                var errorBuilder = new StringBuilder();
 
-            return output;
+                process.OutputDataReceived += (sender, e) =>
+                {
+                    if (!string.IsNullOrEmpty(e.Data))
+                        outputBuilder.AppendLine(e.Data);
+                };
+
+                process.ErrorDataReceived += (sender, e) =>
+                {
+                    if (!string.IsNullOrEmpty(e.Data))
+                        errorBuilder.AppendLine(e.Data);
+                };
+
+                process.Start();
+                process.BeginOutputReadLine();
+                process.BeginErrorReadLine();
+
+                process.WaitForExit();
+
+                var output = outputBuilder.ToString();
+                var error = errorBuilder.ToString();
+
+                return output + error;
+            }
         }
     }
 }
+#endif

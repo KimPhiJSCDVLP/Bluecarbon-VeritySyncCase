@@ -51,9 +51,9 @@
                                         <RowDefinition Height="10*"/>
                                     </Grid.RowDefinitions>
                                     <StackLayout Grid.Row="1" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                                        <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Text="Welcome to VERITY"></Label>
+                                        <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Text="Welcome to VSC" FontSize="50"></Label>
                                     </StackLayout>
-                                    <Button WidthRequest="150" Text="Next" Grid.Row="2"></Button>
+                                    <Button x:Name="SyncDataButton" Text="Sync Data" WidthRequest="200" Grid.Row="2" Clicked="OnSyncButtonClicked"></Button>
                                 </Grid>
                             </StackLayout>
                         </Grid>

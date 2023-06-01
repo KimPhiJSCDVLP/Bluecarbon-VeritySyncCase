@@ -184,18 +184,28 @@
 	  <MauiXaml Update="Resources\Styles\FontSizes.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\BackupFilePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\WelcomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="sharpadbclient" Version="2.3.23" />
 	  <PackageReference Include="System.Management" Version="7.0.1" />
 	  <PackageReference Include="Xamarin.Essentials" Version="1.7.5" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Models\Dto\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="View\BackupFilePage.xaml.cs">
+	    <DependentUpon>BackupFilePage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 </Project>

@@ -8,8 +8,11 @@ namespace VeritySyncCase.Models
 {
     public class DeviceInfoDto
     {
-        public string DeviceName { get; set; }
         public string DeviceId { get; set; }
+        public string DeviceName { get; set; }
         public string Manufacturer { get; set; }
+        public string Model { get; set; }
+        public string SerialNumber { get; set; }
+        public string Product { get; set; }
     }
 }
