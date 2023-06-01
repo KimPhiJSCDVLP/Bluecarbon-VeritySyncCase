@@ -28,8 +28,8 @@
             <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="100,0,100,0">
                 <ListView
                     BackgroundColor="White"
-                    HasUnevenRows="True"
                     HorizontalOptions="FillAndExpand"
+                    HasUnevenRows="True"
                     SelectionMode="None"
                     SeparatorVisibility="None"
                     x:Name="FruitListView" 
@@ -37,11 +37,11 @@
                     VerticalOptions="FillAndExpand">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
+                            <ViewCell Appearing="ViewCell_Appearing">
                                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0,0,0,20">
                                     <Frame BackgroundColor="#f7f9fc">
-                                        <StackLayout HeightRequest="80" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                            <StackLayout HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="50"/>
@@ -58,7 +58,7 @@
                                                              HorizontalOptions="FillAndExpand" 
                                                              VerticalOptions="FillAndExpand">
                                                             <Label IsVisible="{Binding IsOnline}" FontAttributes="Bold" Padding="0,0,10,0" Text="{Binding Name}"/>
-                                                            <Label IsVisible="{Binding IsShowWarning}" TextColor="#9cadbd" Padding="0,0,10,0" Text="{Binding Name}"/>
+                                                            <Label IsVisible="{Binding IsShowWarning}" FontAttributes="Bold" TextColor="#9cadbd" Padding="0,0,10,0" Text="{Binding Name}"/>
                                                             <Border IsVisible="{Binding IsOnline}" Stroke="#00ab67"
                                                                      StrokeThickness="4"
                                                                      StrokeShape="RoundRectangle 40,40,40,40"
@@ -113,18 +113,40 @@
                                                     </StackLayout>
                                                 </Grid>
                                             </StackLayout>
-                                            <Button  ImageSource="Assets\iconupload.png" 
-                                                     Margin="0,0,15,0" HeightRequest="50" 
-                                                     BackgroundColor="#ffffff" 
-                                                     TextColor="#0083df" 
-                                                     Text="Replace Data"
-                                                     VerticalOptions="CenterAndExpand">
+                                            <Button ImageSource="Assets\iconupload.png" 
+                                                    Margin="0,0,15,0" HeightRequest="50" 
+                                                    BackgroundColor="#ffffff" 
+                                                    TextColor="#0083df" 
+                                                    Text="Replace Data"
+                                                    VerticalOptions="CenterAndExpand">
+                                                <Button.Triggers>
+                                                    <DataTrigger Binding="{Binding IsOnline}" TargetType="Button" Value="True">
+                                                        <Setter Property="IsVisible" Value="True" />
+                                                        <Setter Property="TextColor" Value="#0083df" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding IsOnline}" TargetType="Button" Value="False">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="BackgroundColor" Value="#e2e8ee" />
+                                                        <Setter Property="TextColor" Value="Gray" />
+                                                    </DataTrigger>
+                                                </Button.Triggers>
                                             </Button>
                                             <Button ImageSource="Assets\iconsync.png" 
                                                     HeightRequest="50" 
                                                     BackgroundColor="#0074db"  
                                                     Text="Sync Data"
                                                     VerticalOptions="CenterAndExpand">
+                                                <Button.Triggers>
+                                                    <DataTrigger Binding="{Binding IsOnline}" TargetType="Button" Value="True">
+                                                        <Setter Property="IsEnabled" Value="True" />
+                                                        <Setter Property="TextColor" Value="White" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding IsOnline}" TargetType="Button" Value="False">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="BackgroundColor" Value="#dde7f1" />
+                                                        <Setter Property="TextColor" Value="Gray" />
+                                                    </DataTrigger>
+                                                </Button.Triggers>
                                             </Button>
                                         </StackLayout>
                                     </Frame>

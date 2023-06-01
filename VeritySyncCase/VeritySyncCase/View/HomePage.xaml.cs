@@ -78,4 +78,9 @@ public partial class HomePage : ContentPage
         fruits.Add(dev5);
         fruits.Add(dev6);
     }
+
+    private void ViewCell_Appearing(object sender, EventArgs e)
+    {
+
+    }
 }
