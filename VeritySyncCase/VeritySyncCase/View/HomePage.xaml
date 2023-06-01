@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VeritySyncCase.View.HomePage"
              xmlns:customcontrols="clr-namespace:VeritySyncCase.CustomControl"
-             Title="Home">
+             Title="Home" IconImageSource="Assets\iconhome.png">
     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <StackLayout.Background>
             <LinearGradientBrush EndPoint="1,0">
