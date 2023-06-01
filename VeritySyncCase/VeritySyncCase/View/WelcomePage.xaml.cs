@@ -3,7 +3,7 @@ using VeritySyncCase.Utils;
 using System.Management;
 using SharpAdbClient;
 using VeritySyncCase.Constants;
-using System.Timers;
+using Windows.Devices.Enumeration;
 #endif
 namespace VeritySyncCase.View;
 
@@ -21,13 +21,26 @@ public partial class WelcomePage : ContentPage
         mobileDeviceList = new List<DeviceData>();
         LoadConnectedMobileDevices();
         StartMonitoring();
-        StartMonitoringTimer();
-        //Thread backgroundThread = new Thread(StartMonitoring);
-        //backgroundThread.IsBackground = true;
-        //backgroundThread.Start();
+        StartWatching();
 #endif
     }
 #if WINDOWS
+
+    private DeviceWatcher deviceWatcher;
+
+    public void StartWatching()
+    {
+        string deviceSelector = "System.Devices.InterfaceClassGuid:=\"{A5DCBF10-6530-11D2-901F-00C04FB951ED}\" AND System.Devices.InterfaceEnabled:=System.StructuredQueryType.Boolean#True";
+        deviceWatcher = DeviceInformation.CreateWatcher(deviceSelector);
+        deviceWatcher.Removed += DeviceRemoved;
+        deviceWatcher.Start();
+    }
+
+    private void DeviceRemoved(DeviceWatcher sender, DeviceInformationUpdate deviceInfoUpdate)
+    {
+        LoadConnectedMobileDevices();
+    }
+
     async void OnSyncButtonClicked(object sender, EventArgs args)
     {
         //if (IsDeviceConnected(deviceData))
@@ -77,28 +90,11 @@ public partial class WelcomePage : ContentPage
         ManagementEventWatcher watcher = new ManagementEventWatcher(scope, query);
         watcher.EventArrived += Watcher_EventArrived;
         watcher.Start();
-        //while (true)
-        //{
-        //    Thread.Sleep(1000);
-        //}
     }
     private void Watcher_EventArrived(object sender, EventArrivedEventArgs e)
     {
         LoadConnectedMobileDevices();
     }
-    public void StartMonitoringTimer()
-    {
-        double intervalMilliseconds = 5000;
-        connectionCheckTimer = new System.Timers.Timer(intervalMilliseconds);
-        connectionCheckTimer.Elapsed += ConnectionCheckTimerElapsed;
-        connectionCheckTimer.AutoReset = true;
-        connectionCheckTimer.Start();
-    }
-    private void ConnectionCheckTimerElapsed(object sender, ElapsedEventArgs e)
-    {
-        LoadConnectedMobileDevices();
-    }
-
     private bool IsDeviceConnected(DeviceData deviceData)
     {
         var devices = AdbHelper.GetDevices();
