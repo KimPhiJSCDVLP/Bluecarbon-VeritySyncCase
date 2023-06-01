@@ -8,7 +8,6 @@
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">
-            <Button x:Name="SyncDataButton" Text="Sync Data" Clicked="OnSyncButtonClicked"  />
         </VerticalStackLayout>
     </ScrollView>
 

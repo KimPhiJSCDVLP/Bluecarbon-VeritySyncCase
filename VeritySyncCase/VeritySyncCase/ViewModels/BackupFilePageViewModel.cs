@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VeritySyncCase.ViewModels
 {
-    public class WelcomePageViewModel
+    public class BackupFilePageViewModel
     {
     }
 }

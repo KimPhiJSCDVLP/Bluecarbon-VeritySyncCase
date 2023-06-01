@@ -184,6 +184,9 @@
 	  <MauiXaml Update="Resources\Styles\FontSizes.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\BackupFilePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\WelcomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -197,6 +200,12 @@
 
 	<ItemGroup>
 	  <Folder Include="Models\Dto\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="View\BackupFilePage.xaml.cs">
+	    <DependentUpon>BackupFilePage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 </Project>
