@@ -19,57 +19,59 @@
             </StackLayout>
         </StackLayout>
         <StackLayout Padding="100,25,100,0"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <ListView BackgroundColor="Transparent" HasUnevenRows="True" HorizontalOptions="FillAndExpand" ItemsSource="{Binding ItemsList}" SelectionMode="None" SeparatorColor="{StaticResource LightGray}" VerticalOptions="Start">
-                <ListView.Header>
-                    <StackLayout HorizontalOptions="FillAndExpand" Spacing="0" VerticalOptions="FillAndExpand">
-                        <Grid ColumnSpacing="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="1*" />
-                            </Grid.ColumnDefinitions>
-                            <StackLayout Grid.Column="0" Padding="10" Spacing="0" VerticalOptions="FillAndExpand">
-                                <Label FontAttributes="Bold" FontSize="{OnPlatform Android=12, iOS=11}" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" Text="Name" TextColor="{StaticResource LightGray}" VerticalTextAlignment="Center" />
-                            </StackLayout>
-                            <StackLayout Grid.Column="1" Padding="10" Spacing="0" VerticalOptions="FillAndExpand">
-                                <Label FontAttributes="Bold" FontSize="{OnPlatform Android=12, iOS=11}" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" Text="Synced device" TextColor="{StaticResource LightGray}" VerticalTextAlignment="Center" />
-                            </StackLayout>
-                            <StackLayout Grid.Column="2" Padding="10" Spacing="0" VerticalOptions="FillAndExpand">
-                                <Label FontAttributes="Bold" FontSize="{OnPlatform Android=12, iOS=11}" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" Text="Last update" TextColor="{StaticResource LightGray}" VerticalTextAlignment="Center" />
-                            </StackLayout>
-                        </Grid>
-                        <BoxView BackgroundColor="{StaticResource LightGray}" HeightRequest=".5" />
-                    </StackLayout>
-                </ListView.Header>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Grid ColumnSpacing="0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="1*" />
-                                    </Grid.ColumnDefinitions>
-                                    <StackLayout Grid.Column="0" Padding="10" Spacing="0" VerticalOptions="FillAndExpand">
-                                        <Label FontSize="{OnPlatform Android=12, iOS=11}" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" Text="1" TextColor="{StaticResource Black}" VerticalTextAlignment="Center" />
-                                    </StackLayout>
-                                    <StackLayout Grid.Column="1" Padding="10" Spacing="0" VerticalOptions="FillAndExpand">
-                                        <Label FontSize="{OnPlatform Android=12, iOS=11}" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" Text="1" TextColor="{StaticResource Black}" VerticalTextAlignment="Center" />
-                                        <Label BackgroundColor="{StaticResource LightBlue}" FontAttributes="Bold" FontSize="{OnPlatform Android=12, iOS=11}" HorizontalOptions="Start" HorizontalTextAlignment="Start" IsVisible="{Binding Product.IsSerialized}" Text="SERIALIZED" TextColor="White" VerticalTextAlignment="Center" />
-                                    </StackLayout>
-                                    <StackLayout Grid.Column="2" Padding="10" Spacing="0" VerticalOptions="FillAndExpand">
-                                        <Label FontSize="{OnPlatform Android=12, iOS=11}" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" Text="1" TextColor="{StaticResource Black}" VerticalTextAlignment="Center" />
-                                    </StackLayout>
-                                </Grid>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.Footer>
-                    <StackLayout />
-                </ListView.Footer>
-            </ListView>
+            <Frame BorderColor="Gray" Padding="5" CornerRadius="5">
+                <ListView BackgroundColor="Transparent" HasUnevenRows="True" HorizontalOptions="FillAndExpand" ItemsSource="{Binding ItemsList}" SelectionMode="None" SeparatorColor="{StaticResource LightGray}" VerticalOptions="Start">
+                    <ListView.Header>
+                        <StackLayout HorizontalOptions="FillAndExpand" Spacing="0" VerticalOptions="FillAndExpand">
+                            <Grid ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Grid.Column="0" Padding="10" Spacing="0" VerticalOptions="FillAndExpand">
+                                    <Label FontAttributes="Bold" FontSize="{OnPlatform Android=12, iOS=11}" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" Text="Name" TextColor="{StaticResource LightGray}" VerticalTextAlignment="Center" />
+                                </StackLayout>
+                                <StackLayout Grid.Column="1" Padding="10" Spacing="0" VerticalOptions="FillAndExpand">
+                                    <Label FontAttributes="Bold" FontSize="{OnPlatform Android=12, iOS=11}" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" Text="Synced device" TextColor="{StaticResource LightGray}" VerticalTextAlignment="Center" />
+                                </StackLayout>
+                                <StackLayout Grid.Column="2" Padding="10" Spacing="0" VerticalOptions="FillAndExpand">
+                                    <Label FontAttributes="Bold" FontSize="{OnPlatform Android=12, iOS=11}" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" Text="Last update" TextColor="{StaticResource LightGray}" VerticalTextAlignment="Center" />
+                                </StackLayout>
+                            </Grid>
+                            <BoxView BackgroundColor="{StaticResource LightGray}" HeightRequest=".5" />
+                        </StackLayout>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid ColumnSpacing="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1*" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Grid.Column="0" Padding="10" Spacing="0" VerticalOptions="FillAndExpand">
+                                            <Label FontSize="{OnPlatform Android=12, iOS=11}" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" Text="1" TextColor="{StaticResource Black}" VerticalTextAlignment="Center" />
+                                        </StackLayout>
+                                        <StackLayout Grid.Column="1" Padding="10" Spacing="0" VerticalOptions="FillAndExpand">
+                                            <Label FontSize="{OnPlatform Android=12, iOS=11}" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" Text="1" TextColor="{StaticResource Black}" VerticalTextAlignment="Center" />
+                                            <Label BackgroundColor="{StaticResource LightBlue}" FontAttributes="Bold" FontSize="{OnPlatform Android=12, iOS=11}" HorizontalOptions="Start" HorizontalTextAlignment="Start" IsVisible="{Binding Product.IsSerialized}" Text="SERIALIZED" TextColor="White" VerticalTextAlignment="Center" />
+                                        </StackLayout>
+                                        <StackLayout Grid.Column="2" Padding="10" Spacing="0" VerticalOptions="FillAndExpand">
+                                            <Label FontSize="{OnPlatform Android=12, iOS=11}" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" Text="1" TextColor="{StaticResource Black}" VerticalTextAlignment="Center" />
+                                        </StackLayout>
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Footer>
+                        <StackLayout />
+                    </ListView.Footer>
+                </ListView>
+            </Frame>
         </StackLayout>
     </StackLayout>
 </ContentPage>

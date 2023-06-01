@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VeritySyncCase.View;
 
 namespace VeritySyncCase.CustomControl
 {
-    public class BottomBarControl : ContentView
+    public class SyncButton : Button
     {
+        public SyncButton() 
+        {
+            ImageSource = "Assets\\iconsync.png";
+        }
     }
 }

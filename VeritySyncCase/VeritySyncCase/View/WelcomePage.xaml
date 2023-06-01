@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VeritySyncCase.View.WelcomePage"
+             xmlns:viewModels ="clr-namespace:VeritySyncCase.ViewModels"
+             x:DataType="viewModels:WelcomePageViewModel"
              Title="WelcomePage">
   
     <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
@@ -53,14 +55,13 @@
                                         <Label VerticalOptions="StartAndExpand" TextColor="#00448e" HorizontalOptions="StartAndExpand" Text="Welcome to VERITY"></Label>
                                         <Label Padding="0,20,0,20" TextColor="#748da9" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Text="Carbon offsets can be used to reduce the overall carbon footprint of andividual, business, or organization"></Label>
                                     </StackLayout>
-                                    <Button WidthRequest="150" BackgroundColor="#0074e1" Text="Next" TextColor="#deedfb" Grid.Row="2"></Button>
+                                    <Button x:Name="nextPage" WidthRequest="150" Clicked="nextPage_Clicked" BackgroundColor="#0074e1" Text="Next" TextColor="#deedfb" Grid.Row="2"></Button>
                                 </Grid>
                             </StackLayout>
                         </Grid>
                     </StackLayout>
                 </Grid>
              </StackLayout>
-            
         </StackLayout>
     </AbsoluteLayout>
 </ContentPage>

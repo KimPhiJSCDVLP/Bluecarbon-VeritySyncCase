@@ -5,18 +5,17 @@ using SharpAdbClient;
 using VeritySyncCase.Constants;
 using Windows.Devices.Enumeration;
 #endif
+using VeritySyncCase.ViewModels;
+
 namespace VeritySyncCase.View;
 
 public partial class WelcomePage : ContentPage
 {
-#if WINDOWS
-    private System.Timers.Timer connectionCheckTimer;
-    private ManagementEventWatcher watcher;
-    public List<DeviceData> mobileDeviceList;
-#endif
+	public WelcomePageViewModel viewModel { get; set; }
     public WelcomePage()
 	{
 		InitializeComponent();
+        this.viewModel = (WelcomePageViewModel)BindingContext;
 #if WINDOWS
         mobileDeviceList = new List<DeviceData>();
         LoadConnectedMobileDevices();
@@ -24,8 +23,15 @@ public partial class WelcomePage : ContentPage
         StartWatching();
 #endif
     }
-#if WINDOWS
 
+    private void nextPage_Clicked(object sender, EventArgs e)
+    {
+        App.Current.MainPage = new NavigationPage(new HomeMainPage());
+    }
+
+#if WINDOWS
+    private ManagementEventWatcher watcher;
+    public List<DeviceData> mobileDeviceList;
     private DeviceWatcher deviceWatcher;
 
     public void StartWatching()

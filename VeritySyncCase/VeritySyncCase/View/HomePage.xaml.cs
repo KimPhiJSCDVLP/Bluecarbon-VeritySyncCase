@@ -79,4 +79,9 @@ public partial class HomePage : ContentPage
         devices.Add(dev5);
         devices.Add(dev6);
     }
+
+    private void ViewCell_Appearing(object sender, EventArgs e)
+    {
+
+    }
 }

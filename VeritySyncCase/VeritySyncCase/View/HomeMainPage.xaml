@@ -4,7 +4,8 @@
              x:Class="VeritySyncCase.View.HomeMainPage"
              xmlns:local="clr-namespace:VeritySyncCase.View" 
              BarBackgroundColor="#0F172A" BarTextColor ="#AEBED1">
-    <local:HomePage  />
+
+    <local:HomePage/>
     <local:BackupFilePage/>
 </TabbedPage>
     
