@@ -33,7 +33,7 @@
                     SelectionMode="None"
                     SeparatorVisibility="None"
                     x:Name="DeviceListView" 
-                    ItemsSource="{Binding Devices}"
+                    ItemsSource="{Binding Devices }"
                     VerticalOptions="FillAndExpand">
                     <ListView.ItemTemplate>
                         <DataTemplate>

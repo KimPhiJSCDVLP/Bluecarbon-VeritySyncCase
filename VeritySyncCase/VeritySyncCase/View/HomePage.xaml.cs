@@ -1,4 +1,6 @@
 using VeritySyncCase.Models;
+using System.Collections.ObjectModel;
+using Microsoft.UI.Xaml.Documents;
 
 #if WINDOWS
 using VeritySyncCase.Utils;
@@ -17,11 +19,11 @@ public partial class HomePage : ContentPage
         InitializeComponent();
 #if WINDOWS
         Devices = new ConcurrentObservableCollection<DeviceDataDTO>();
-        LoadData();
         LoadConnectedMobileDevices();
+        LoadData();
         StartMonitoring();
         StartWatching();
-        DeviceListView.ItemsSource = Devices;
+        BindingContext = this;
 #endif
     }
 
@@ -29,8 +31,8 @@ public partial class HomePage : ContentPage
     {
     }
 #if WINDOWS
-    public ConcurrentObservableCollection<DeviceDataDTO> Devices { get; }
-    private void LoadData()
+    public ConcurrentObservableCollection<DeviceDataDTO> Devices { get; set; }
+private void LoadData()
     {
 		var device1 = new DeviceDataDTO() { 
 			Model = "Tab S8",
@@ -38,6 +40,8 @@ public partial class HomePage : ContentPage
 			Product= "aa",
 			Serial = "88191FFAZ004ZHBB",
 			State = DeviceState.Offline,
+            IsOnline = false,
+            IsShowWarning = true,
             TransportId = "36",
         };
         var device2 = new DeviceDataDTO()
@@ -47,6 +51,8 @@ public partial class HomePage : ContentPage
             Product = "aa",
             Serial = "99191FFAZ004ZHAA",
             State = DeviceState.Online,
+            IsOnline = true,
+            IsShowWarning = false,
             TransportId = "36"
         };
         var device3 = new DeviceDataDTO()
@@ -56,6 +62,8 @@ public partial class HomePage : ContentPage
             Product = "aa",
             Serial = "99191FFAZ004ZHWS",
             State = DeviceState.Offline,
+            IsOnline = false,
+            IsShowWarning = true,
             TransportId = "36"
         };
         var device4 = new DeviceDataDTO()
@@ -65,6 +73,8 @@ public partial class HomePage : ContentPage
             Product = "aa",
             Serial = "77191FFAZ004ZH",
             State = DeviceState.Offline,
+            IsOnline = false,
+            IsShowWarning = true,
             TransportId = "36"
         };
         var device5 = new DeviceDataDTO()
@@ -74,6 +84,8 @@ public partial class HomePage : ContentPage
             Product = "aa",
             Serial = "22191FFAZ004ZH",
             State = DeviceState.Offline,
+            IsOnline = false,
+            IsShowWarning = true,
             TransportId = "36"
         };
         var device6 = new DeviceDataDTO()
@@ -83,6 +95,8 @@ public partial class HomePage : ContentPage
             Product = "aa",
             Serial = "33191FFAZ004ZH",
             State = DeviceState.Offline,
+            IsOnline = false,
+            IsShowWarning = true,
             TransportId = "36"
         };
         Devices.Add(device1);
@@ -144,9 +158,11 @@ public partial class HomePage : ContentPage
                     Product = item.Product,
                     Serial = item.Serial,
                     State = item.State,
-                    TransportId = item.TransportId
+                    TransportId = item.TransportId,
+                    IsOnline = item.State == DeviceState.Online ? true : false,
+                    IsShowWarning = item.State == DeviceState.Online ? false : true
                 };
-                Devices.Insert(0, deviceDataDTO);
+                Devices.Add(deviceDataDTO);
             }
         }
         else
@@ -154,6 +170,8 @@ public partial class HomePage : ContentPage
             foreach (var item in Devices)
             {
                 item.State = DeviceState.Offline;
+                item.IsOnline = false;
+                item.IsShowWarning = true;
             }
             foreach (var item in devices)
             {
@@ -167,12 +185,18 @@ public partial class HomePage : ContentPage
                         Product = item.Product,
                         Serial = item.Serial,
                         State = item.State,
-                        TransportId = item.TransportId
+                        TransportId = item.TransportId,
+                        IsOnline = item.State == DeviceState.Online ? true : false,
+                        IsShowWarning = item.State == DeviceState.Online ? false : true
                     };
-                    Devices.Insert(0, deviceDataDTO);
+                    Devices.Add(deviceDataDTO);
                 }
                 else
+                {
+                    existDevice.IsOnline = item.State == DeviceState.Online ? true : false;
+                    existDevice.IsShowWarning = item.State == DeviceState.Online ? false : true;
                     existDevice.State = item.State;
+                }
             }
         }
     }
