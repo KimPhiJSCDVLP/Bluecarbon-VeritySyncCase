@@ -21,7 +21,7 @@
             <StackLayout Orientation="Horizontal"  HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Padding="0,0,50,0">
                 <Label FontAttributes="Bold" Padding="0,0,5,0">4</Label>
                 <Label Padding="0,0,10,0">Selected</Label>
-                <Button HeightRequest="55" ImageSource="Assets\iconsync.png" BackgroundColor="#0074db" Text="Sync now" TextColor="White"></Button>
+                <Button HeightRequest="55" ImageSource="Assets\iconsync.png" BackgroundColor="#0074db" Text="Sync now" TextColor="White" Clicked="OnSyncButtonClicked"></Button>
             </StackLayout>
         </StackLayout>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0,50,0,0">
@@ -32,8 +32,8 @@
                     HasUnevenRows="True"
                     SelectionMode="None"
                     SeparatorVisibility="None"
-                    x:Name="FruitListView" 
-                    ItemsSource="{Binding Fruits}"
+                    x:Name="DeviceListView" 
+                    ItemsSource="{Binding Devices}"
                     VerticalOptions="FillAndExpand">
                     <ListView.ItemTemplate>
                         <DataTemplate>
