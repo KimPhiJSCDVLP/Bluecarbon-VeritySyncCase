@@ -5,7 +5,7 @@ namespace VeritySyncCase.Models
     {
         public string BackupFileName { get; set; }
 
-        public DeviceDataDTO device { get; set; }
+        public DeviceDataDTO Device { get; set; }
 
         public DateTime UpdatedDate { get; set; }
 

@@ -6,31 +6,29 @@ using VeritySyncCase.Utils;
 #endif
 using VeritySyncCase.Models;
 using SharpAdbClient;
-using System.Collections.ObjectModel;
 
 namespace VeritySyncCase.View;
 
 public partial class HomePage : ContentPage
 {
-    //public HomePageViewModel viewModel { get; set; }
+    public ConcurrentObservableCollection<DeviceDataDTO> Devices { get; set; }
     public HomePage()
-	{
+    {
         InitializeComponent();
 #if WINDOWS
-        Devices = new ObservableCollection<DeviceDataDTO>();
+        Devices = new ConcurrentObservableCollection<DeviceDataDTO>();
         LoadConnectedMobileDevices();
         LoadData();
         StartMonitoring();
         StartWatching();
         BindingContext = this;
+        CountPlugged.Text = Devices.Where(x => x.IsOnline == true).Count().ToString();
 #endif
     }
-
     private void ViewCell_Appearing(object sender, EventArgs e)
     {
     }
 #if WINDOWS
-    public ObservableCollection<DeviceDataDTO> Devices { get; set; }
     private void LoadData()
     {
         var device1 = new DeviceDataDTO()
@@ -106,10 +104,8 @@ public partial class HomePage : ContentPage
         Devices.Add(device5);
         Devices.Add(device6);
     }
-
     private ManagementEventWatcher watcher;
     private DeviceWatcher deviceWatcher;
-
     public void StartWatching()
     {
         string deviceSelector = "System.Devices.InterfaceClassGuid:=\"{A5DCBF10-6530-11D2-901F-00C04FB951ED}\" AND System.Devices.InterfaceEnabled:=System.StructuredQueryType.Boolean#True";
@@ -125,9 +121,6 @@ public partial class HomePage : ContentPage
 
     async void OnSyncButtonClicked(object sender, EventArgs args)
     {
-        //if (IsDeviceConnected(deviceData))
-        //{
-        //}
         var deviceId = Devices.Select(x => x.Serial).FirstOrDefault();
         if (deviceId != null)
         {
@@ -213,6 +206,7 @@ public partial class HomePage : ContentPage
         ManagementEventWatcher watcher = new ManagementEventWatcher(scope, query);
         watcher.EventArrived += Watcher_EventArrived;
         watcher.Start();
+        CountPlugged.Text = Devices.Where(x => x.IsOnline == true).Count().ToString();
     }
     private void Watcher_EventArrived(object sender, EventArrivedEventArgs e)
     {
@@ -226,8 +220,8 @@ public partial class HomePage : ContentPage
         return (device != null && device.State == DeviceState.Online) ? true : false;
     }
 #else
-    async void OnSyncButtonClicked(object sender, EventArgs args)
-    {
-    }
+        async void OnSyncButtonClicked(object sender, EventArgs args)
+        {
+        }
 #endif
 }
