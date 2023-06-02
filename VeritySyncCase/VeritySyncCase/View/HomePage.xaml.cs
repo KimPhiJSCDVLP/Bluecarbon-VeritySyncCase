@@ -1,19 +1,17 @@
-using VeritySyncCase.Models;
-using System.Collections.ObjectModel;
-using Microsoft.UI.Xaml.Documents;
-
 #if WINDOWS
-using VeritySyncCase.Utils;
 using System.Management;
-using VeritySyncCase.Constants;
 using Windows.Devices.Enumeration;
-using SharpAdbClient;
+using VeritySyncCase.Constants;
+using VeritySyncCase.Utils;
 #endif
+using VeritySyncCase.Models;
+using SharpAdbClient;
 
 namespace VeritySyncCase.View;
 
 public partial class HomePage : ContentPage
 {
+    //public HomePageViewModel viewModel { get; set; }
     public HomePage()
 	{
         InitializeComponent();
@@ -32,7 +30,7 @@ public partial class HomePage : ContentPage
     }
 #if WINDOWS
     public ConcurrentObservableCollection<DeviceDataDTO> Devices { get; set; }
-private void LoadData()
+    private void LoadData()
     {
 		var device1 = new DeviceDataDTO() { 
 			Model = "Tab S8",

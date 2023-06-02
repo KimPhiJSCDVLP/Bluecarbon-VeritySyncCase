@@ -19,7 +19,14 @@ public static class MauiProgram
 			});
 		
         builder.Services.AddTransient<WelcomePage>();
+        builder.Services.AddTransient<HomePage>();
+        builder.Services.AddTransient<HomeMainPage>();
+        builder.Services.AddTransient<BackupFilePage>();
+
         builder.Services.AddTransient<WelcomePageViewModel>();
+        builder.Services.AddTransient<BackupFilePageViewModel>();
+        //builder.Services.AddTransient<HomePageViewModel>();
+
         builder.Services.AddSingleton<INavigationService, NavigationService>();
         return builder.Build();
 	}

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VeritySyncCase.View.HomePage"
              xmlns:customcontrols="clr-namespace:VeritySyncCase.CustomControl"
+             xmlns:viewModels="clr-namespace:VeritySyncCase.ViewModels"
              Title="Home" IconImageSource="Assets\iconhome.png">
     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <StackLayout.Background>
@@ -21,7 +22,7 @@
             <StackLayout Orientation="Horizontal"  HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Padding="0,0,50,0">
                 <Label FontAttributes="Bold" TextColor="#0F172A" Padding="0,0,5,0">4</Label>
                 <Label Padding="0,0,10,0">Selected</Label>
-                <Button HeightRequest="55" ImageSource="Assets\iconsync.png" BackgroundColor="#0074db" Text="Sync now" TextColor="White" Clicked="OnSyncButtonClicked"></Button>
+                <Button HeightRequest="55" ImageSource="Assets\iconsync.png" BackgroundColor="#0074db" Text="Sync now" TextColor="White"></Button>
             </StackLayout>
         </StackLayout>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0,50,0,0">
@@ -37,7 +38,7 @@
                     VerticalOptions="FillAndExpand">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell Appearing="ViewCell_Appearing">
+                            <ViewCell>
                                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0,0,0,0">
                                     <Frame BackgroundColor="#f7f9fc">
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
