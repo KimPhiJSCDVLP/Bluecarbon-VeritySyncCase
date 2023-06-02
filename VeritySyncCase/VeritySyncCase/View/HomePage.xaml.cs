@@ -6,6 +6,7 @@ using VeritySyncCase.Utils;
 #endif
 using VeritySyncCase.Models;
 using SharpAdbClient;
+using System.Collections.ObjectModel;
 
 namespace VeritySyncCase.View;
 
@@ -16,7 +17,7 @@ public partial class HomePage : ContentPage
 	{
         InitializeComponent();
 #if WINDOWS
-        Devices = new ConcurrentObservableCollection<DeviceDataDTO>();
+        Devices = new ObservableCollection<DeviceDataDTO>();
         LoadConnectedMobileDevices();
         LoadData();
         StartMonitoring();
@@ -29,15 +30,16 @@ public partial class HomePage : ContentPage
     {
     }
 #if WINDOWS
-    public ConcurrentObservableCollection<DeviceDataDTO> Devices { get; set; }
+    public ObservableCollection<DeviceDataDTO> Devices { get; set; }
     private void LoadData()
     {
-		var device1 = new DeviceDataDTO() { 
-			Model = "Tab S8",
-			Name = "Samsung galaxy Tab S8",
-			Product= "aa",
-			Serial = "88191FFAZ004ZHBB",
-			State = DeviceState.Offline,
+        var device1 = new DeviceDataDTO()
+        {
+            Model = "Tab S8",
+            Name = "Samsung galaxy Tab S8",
+            Product = "aa",
+            Serial = "88191FFAZ004ZHBB",
+            State = DeviceState.Offline,
             IsOnline = false,
             IsShowWarning = true,
             TransportId = "36",
@@ -160,7 +162,10 @@ public partial class HomePage : ContentPage
                     IsOnline = item.State == DeviceState.Online ? true : false,
                     IsShowWarning = item.State == DeviceState.Online ? false : true
                 };
-                Devices.Add(deviceDataDTO);
+                Device.InvokeOnMainThreadAsync(() =>
+                {
+                    Devices.Add(deviceDataDTO);
+                });
             }
         }
         else
@@ -187,7 +192,10 @@ public partial class HomePage : ContentPage
                         IsOnline = item.State == DeviceState.Online ? true : false,
                         IsShowWarning = item.State == DeviceState.Online ? false : true
                     };
-                    Devices.Add(deviceDataDTO);
+                    Device.InvokeOnMainThreadAsync(() =>
+                    {
+                        Devices.Add(deviceDataDTO);
+                    });
                 }
                 else
                 {
