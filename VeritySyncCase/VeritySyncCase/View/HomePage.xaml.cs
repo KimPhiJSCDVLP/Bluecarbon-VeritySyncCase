@@ -7,11 +7,17 @@ using VeritySyncCase.Utils;
 using VeritySyncCase.Models;
 using SharpAdbClient;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace VeritySyncCase.View;
 
-public partial class HomePage : ContentPage
+public partial class HomePage : ContentPage, INotifyPropertyChanged
 {
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
     //public HomePageViewModel viewModel { get; set; }
     public HomePage()
 	{
@@ -144,7 +150,7 @@ public partial class HomePage : ContentPage
         LoadConnectedMobileDevices();
     }
 
-    private void LoadConnectedMobileDevices()
+    private async void LoadConnectedMobileDevices()
     {
         var devices = AdbHelper.GetDevices();
         if (Devices.Count == 0)
@@ -159,10 +165,10 @@ public partial class HomePage : ContentPage
                     Serial = item.Serial,
                     State = item.State,
                     TransportId = item.TransportId,
-                    IsOnline = item.State == DeviceState.Online ? true : false,
-                    IsShowWarning = item.State == DeviceState.Online ? false : true
+                    IsOnline = item.State == DeviceState.Online,
+                    IsShowWarning = item.State != DeviceState.Online
                 };
-                Device.InvokeOnMainThreadAsync(() =>
+                await Device.InvokeOnMainThreadAsync(() =>
                 {
                     Devices.Add(deviceDataDTO);
                 });
@@ -189,19 +195,24 @@ public partial class HomePage : ContentPage
                         Serial = item.Serial,
                         State = item.State,
                         TransportId = item.TransportId,
-                        IsOnline = item.State == DeviceState.Online ? true : false,
-                        IsShowWarning = item.State == DeviceState.Online ? false : true
+                        IsOnline = item.State == DeviceState.Online,
+                        IsShowWarning = item.State != DeviceState.Online
                     };
-                    Device.InvokeOnMainThreadAsync(() =>
+                    await Device.InvokeOnMainThreadAsync(() =>
                     {
                         Devices.Add(deviceDataDTO);
                     });
                 }
                 else
                 {
-                    existDevice.IsOnline = item.State == DeviceState.Online ? true : false;
-                    existDevice.IsShowWarning = item.State == DeviceState.Online ? false : true;
+                    existDevice.Model = item.Model;
+                    existDevice.Name = item.Name;
+                    existDevice.Product = item.Product;
+                    existDevice.Serial = item.Serial;
                     existDevice.State = item.State;
+                    existDevice.TransportId = item.TransportId;
+                    existDevice.IsOnline = item.State == DeviceState.Online;
+                    existDevice.IsShowWarning = item.State != DeviceState.Online;
                 }
             }
         }
