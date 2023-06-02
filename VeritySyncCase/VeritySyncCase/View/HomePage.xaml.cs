@@ -1,4 +1,3 @@
-using SharpAdbClient;
 using System.Collections.ObjectModel;
 using VeritySyncCase.Models;
 
@@ -7,6 +6,7 @@ using VeritySyncCase.Utils;
 using System.Management;
 using VeritySyncCase.Constants;
 using Windows.Devices.Enumeration;
+using SharpAdbClient;
 #endif
 
 namespace VeritySyncCase.View;

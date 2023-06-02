@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VeritySyncCase.View.HomeMainPage"
              xmlns:local="clr-namespace:VeritySyncCase.View" 
-             BarBackgroundColor="#0F172A" BarTextColor ="#AEBED1">
+             BarBackgroundColor="#0F172A" BarTextColor ="#AEBED1" SelectedTabColor="#0073E7">
 
     <local:HomePage/>
     <local:BackupFilePage/>

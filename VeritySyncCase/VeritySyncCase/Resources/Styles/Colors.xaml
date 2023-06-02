@@ -20,7 +20,7 @@
     <Color x:Key="Blue">#2475D2</Color>
     <Color x:Key="LightBlue">#7ECBFF</Color>
     <Color x:Key="Gray">#858585</Color>
-    <Color x:Key="LightGray">#9FB6D4</Color>
+    <Color x:Key="LightGray">#64748B</Color>
     <Color x:Key="LightBlack">#617691</Color>
     <Color x:Key="Green">#0BE9BC</Color>
     <Color x:Key="LightWhite">#F2F7FA</Color>

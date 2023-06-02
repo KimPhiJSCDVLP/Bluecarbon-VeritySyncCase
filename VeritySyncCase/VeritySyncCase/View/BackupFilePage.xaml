@@ -15,7 +15,7 @@
         </StackLayout.Background>
         <StackLayout Orientation="Horizontal" Padding="100,25,0,0">
             <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <Label FontAttributes="Bold" FontSize="20">Backup file</Label>
+                <Label FontAttributes="Bold" TextColor="#0F172A" FontSize="20">Backup file</Label>
             </StackLayout>
         </StackLayout>
         <StackLayout Padding="100,25,100,0"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
