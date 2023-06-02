@@ -1,4 +1,3 @@
-using System.Collections.ObjectModel;
 using VeritySyncCase.Models;
 
 #if WINDOWS
@@ -13,19 +12,23 @@ namespace VeritySyncCase.View;
 
 public partial class HomePage : ContentPage
 {
-    public ConcurrentObservableCollection<DeviceData> Devices { get; }
     public HomePage()
 	{
-        Devices = new ConcurrentObservableCollection<DeviceData>();
         InitializeComponent();
-        LoadData();
 #if WINDOWS
+        Devices = new ConcurrentObservableCollection<DeviceData>();
+        LoadData();
         LoadConnectedMobileDevices();
         StartMonitoring();
         StartWatching();
 #endif
     }
 
+    private void ViewCell_Appearing(object sender, EventArgs e)
+    {
+    }
+#if WINDOWS
+    public ConcurrentObservableCollection<DeviceData> Devices { get; }
     private void LoadData()
     {
 		var device1 = new DeviceData() { 
@@ -89,11 +92,6 @@ public partial class HomePage : ContentPage
         Devices.Add(device6);
     }
 
-    private void ViewCell_Appearing(object sender, EventArgs e)
-    {
-    }
-
-#if WINDOWS
     private ManagementEventWatcher watcher;
     private DeviceWatcher deviceWatcher;
 
