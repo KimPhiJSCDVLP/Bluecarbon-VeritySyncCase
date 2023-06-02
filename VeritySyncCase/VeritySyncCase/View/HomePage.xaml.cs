@@ -16,11 +16,12 @@ public partial class HomePage : ContentPage
 	{
         InitializeComponent();
 #if WINDOWS
-        Devices = new ConcurrentObservableCollection<DeviceData>();
+        Devices = new ConcurrentObservableCollection<DeviceDataDTO>();
         LoadData();
         LoadConnectedMobileDevices();
         StartMonitoring();
         StartWatching();
+        DeviceListView.ItemsSource = Devices;
 #endif
     }
 
@@ -28,10 +29,10 @@ public partial class HomePage : ContentPage
     {
     }
 #if WINDOWS
-    public ConcurrentObservableCollection<DeviceData> Devices { get; }
+    public ConcurrentObservableCollection<DeviceDataDTO> Devices { get; }
     private void LoadData()
     {
-		var device1 = new DeviceData() { 
+		var device1 = new DeviceDataDTO() { 
 			Model = "Tab S8",
 			Name = "Samsung galaxy Tab S8",
 			Product= "aa",
@@ -39,7 +40,7 @@ public partial class HomePage : ContentPage
 			State = DeviceState.Offline,
             TransportId = "36",
         };
-        var device2 = new DeviceData()
+        var device2 = new DeviceDataDTO()
         {
             Model = "SS22",
             Name = "Samsung galaxy SS22",
@@ -48,7 +49,7 @@ public partial class HomePage : ContentPage
             State = DeviceState.Online,
             TransportId = "36"
         };
-        var device3 = new DeviceData()
+        var device3 = new DeviceDataDTO()
         {
             Model = "Pixel_4",
             Name = "Name",
@@ -57,7 +58,7 @@ public partial class HomePage : ContentPage
             State = DeviceState.Offline,
             TransportId = "36"
         };
-        var device4 = new DeviceData()
+        var device4 = new DeviceDataDTO()
         {
             Model = "Pixel_4",
             Name = "Samsung galaxy Tab A8",
@@ -66,7 +67,7 @@ public partial class HomePage : ContentPage
             State = DeviceState.Offline,
             TransportId = "36"
         };
-        var device5 = new DeviceData()
+        var device5 = new DeviceDataDTO()
         {
             Model = "Tab S7+",
             Name = "Samsung galaxy Tab S7+",
@@ -75,7 +76,7 @@ public partial class HomePage : ContentPage
             State = DeviceState.Offline,
             TransportId = "36"
         };
-        var device6 = new DeviceData()
+        var device6 = new DeviceDataDTO()
         {
             Model = "Tab S6",
             Name = "Samsung galaxy Tab S6",
@@ -136,7 +137,16 @@ public partial class HomePage : ContentPage
         {
             foreach (var item in devices)
             {
-                Devices.Insert(0, item);
+                var deviceDataDTO = new DeviceDataDTO()
+                {
+                    Model = item.Model,
+                    Name = item.Name,
+                    Product = item.Product,
+                    Serial = item.Serial,
+                    State = item.State,
+                    TransportId = item.TransportId
+                };
+                Devices.Insert(0, deviceDataDTO);
             }
         }
         else
@@ -149,7 +159,18 @@ public partial class HomePage : ContentPage
             {
                 var existDevice = Devices.FirstOrDefault(x => x.Serial == item.Serial);
                 if (existDevice == null)
-                    Devices.Insert(0, item);
+                {
+                    var deviceDataDTO = new DeviceDataDTO()
+                    {
+                        Model = item.Model,
+                        Name = item.Name,
+                        Product = item.Product,
+                        Serial = item.Serial,
+                        State = item.State,
+                        TransportId = item.TransportId
+                    };
+                    Devices.Insert(0, deviceDataDTO);
+                }
                 else
                     existDevice.State = item.State;
             }
@@ -173,6 +194,10 @@ public partial class HomePage : ContentPage
         var device = devices.FirstOrDefault(x => x.Serial == deviceData.Serial);
         deviceData.State = device.State;
         return (device != null && device.State == DeviceState.Online) ? true : false;
+    }
+#else
+    async void OnSyncButtonClicked(object sender, EventArgs args)
+    {
     }
 #endif
 }
