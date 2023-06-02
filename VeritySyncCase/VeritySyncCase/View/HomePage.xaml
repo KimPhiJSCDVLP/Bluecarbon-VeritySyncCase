@@ -4,6 +4,7 @@
              x:Class="VeritySyncCase.View.HomePage"
              xmlns:customcontrols="clr-namespace:VeritySyncCase.CustomControl"
              xmlns:viewModels="clr-namespace:VeritySyncCase.ViewModels"
+             xmlns:model="clr-namespace:VeritySyncCase.Models"
              Title="Home" IconImageSource="Assets\iconhome.png">
     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <StackLayout.Background>
@@ -16,7 +17,7 @@
         </StackLayout.Background>
         <StackLayout Orientation="Horizontal" Padding="50,25,0,0">
             <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <Label FontAttributes="Bold" TextColor="#0F172A" Padding="0,0,5,0">4</Label>
+                <Label FontAttributes="Bold" x:Name="CountPlugged" TextColor="#0F172A" Padding="0,0,5,0">4</Label>
                 <Label>devices plugged in</Label>
             </StackLayout>
             <StackLayout Orientation="Horizontal"  HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Padding="0,0,50,0">
@@ -37,7 +38,7 @@
                     ItemsSource="{Binding Devices, Mode=TwoWay}"
                     VerticalOptions="FillAndExpand">
                     <ListView.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="model:DeviceDataDTO">
                             <ViewCell>
                                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0,0,0,0">
                                     <Frame BackgroundColor="#f7f9fc">

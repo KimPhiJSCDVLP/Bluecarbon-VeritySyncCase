@@ -20,7 +20,7 @@ public partial class HomePage : ContentPage, INotifyPropertyChanged
     }
     //public HomePageViewModel viewModel { get; set; }
     public HomePage()
-	{
+    {
         InitializeComponent();
 #if WINDOWS
         Devices = new ObservableCollection<DeviceDataDTO>();
@@ -29,9 +29,9 @@ public partial class HomePage : ContentPage, INotifyPropertyChanged
         StartMonitoring();
         StartWatching();
         BindingContext = this;
+        CountPlugged.Text = Devices.Where(x => x.IsOnline == true).Count().ToString();
 #endif
     }
-
     private void ViewCell_Appearing(object sender, EventArgs e)
     {
     }
@@ -112,10 +112,8 @@ public partial class HomePage : ContentPage, INotifyPropertyChanged
         Devices.Add(device5);
         Devices.Add(device6);
     }
-
     private ManagementEventWatcher watcher;
     private DeviceWatcher deviceWatcher;
-
     public void StartWatching()
     {
         string deviceSelector = "System.Devices.InterfaceClassGuid:=\"{A5DCBF10-6530-11D2-901F-00C04FB951ED}\" AND System.Devices.InterfaceEnabled:=System.StructuredQueryType.Boolean#True";
@@ -224,6 +222,7 @@ public partial class HomePage : ContentPage, INotifyPropertyChanged
         ManagementEventWatcher watcher = new ManagementEventWatcher(scope, query);
         watcher.EventArrived += Watcher_EventArrived;
         watcher.Start();
+        CountPlugged.Text = Devices.Where(x => x.IsOnline == true).Count().ToString();
     }
     private void Watcher_EventArrived(object sender, EventArrivedEventArgs e)
     {
@@ -237,8 +236,8 @@ public partial class HomePage : ContentPage, INotifyPropertyChanged
         return (device != null && device.State == DeviceState.Online) ? true : false;
     }
 #else
-    async void OnSyncButtonClicked(object sender, EventArgs args)
-    {
-    }
+        async void OnSyncButtonClicked(object sender, EventArgs args)
+        {
+        }
 #endif
 }

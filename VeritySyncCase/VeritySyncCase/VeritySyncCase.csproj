@@ -52,6 +52,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="CustomRenderer\**" />
+	  <Compile Remove="Models\Dto\**" />
+	  <EmbeddedResource Remove="CustomRenderer\**" />
+	  <EmbeddedResource Remove="Models\Dto\**" />
+	  <MauiCss Remove="CustomRenderer\**" />
+	  <MauiCss Remove="Models\Dto\**" />
+	  <MauiXaml Remove="CustomRenderer\**" />
+	  <MauiXaml Remove="Models\Dto\**" />
+	  <None Remove="CustomRenderer\**" />
+	  <None Remove="Models\Dto\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Assets\BadgeLogo.scale-100.png" />
 	  <None Remove="Assets\BadgeLogo.scale-125.png" />
 	  <None Remove="Assets\BadgeLogo.scale-150.png" />
@@ -197,11 +210,6 @@
 	  <PackageReference Include="sharpadbclient" Version="2.3.23" />
 	  <PackageReference Include="System.Management" Version="7.0.1" />
 	  <PackageReference Include="Xamarin.Essentials" Version="1.7.5" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="CustomRenderer\" />
-	  <Folder Include="Models\Dto\" />
 	</ItemGroup>
 
 	<ItemGroup>
