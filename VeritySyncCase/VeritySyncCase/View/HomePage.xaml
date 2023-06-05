@@ -124,6 +124,16 @@
                                                     </StackLayout>
                                                 </Grid>
                                             </StackLayout>
+                                            <StackLayout IsVisible="{Binding IsSyncing}" Margin="10,0,10,0" Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+                                                <Image Source="Assets\iconsyncing.png" HeightRequest="15" Margin="0,0,5,0"></Image>
+                                                <Label Text="Syncing..." TextColor="#0083df" FontFamily="Roboto"/>
+                                                <ProgressBar Margin="10,0,10,0" 
+                                                             WidthRequest="100"
+                                                             Progress="0.89" 
+                                                             ProgressColor="#0083df"
+                                                             ScaleY="2"/>
+                                                <Label Text="89%" FontFamily="Roboto" />
+                                            </StackLayout>
                                             <Button ImageSource="Assets\iconupload.png" 
                                                     Margin="0,0,15,0" HeightRequest="50" 
                                                     BackgroundColor="#ffffff" 

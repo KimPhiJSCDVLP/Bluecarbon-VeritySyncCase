@@ -107,6 +107,13 @@ namespace VeritySyncCase.Models
             get { return isShowWarning; }
             set { SetProperty(ref isShowWarning, value); }
         }
+
+        private bool isSyncing;
+        public bool IsSyncing
+        {
+            get { return isSyncing; }
+            set { SetProperty(ref isSyncing, value); }
+        }
         public static DeviceData CreateFromAdbData(string data)
         {
             Match match = Regex.Match(data);

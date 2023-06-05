@@ -105,12 +105,25 @@ public partial class HomePage : ContentPage, INotifyPropertyChanged
             IsShowWarning = true,
             TransportId = "36"
         };
+        var device7 = new DeviceDataDTO()
+        {
+            Model = "Tab S7",
+            Name = "Samsung galaxy Tab S7",
+            Product = "aa",
+            Serial = "44191FFAZ004ZH",
+            State = DeviceState.Online,
+            IsOnline = true,
+            IsShowWarning = false,
+            IsSyncing = true,
+            TransportId = "37"
+        };
         Devices.Add(device1);
         Devices.Add(device2);
         Devices.Add(device3);
         Devices.Add(device4);
         Devices.Add(device5);
         Devices.Add(device6);
+        Devices.Add(device7);
     }
     private ManagementEventWatcher watcher;
     private DeviceWatcher deviceWatcher;
