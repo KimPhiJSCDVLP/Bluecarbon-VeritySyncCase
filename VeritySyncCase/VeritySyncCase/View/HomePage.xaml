@@ -21,7 +21,7 @@
                 <Label>devices plugged in</Label>
             </StackLayout>
             <StackLayout Orientation="Horizontal"  HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Padding="0,0,50,0">
-                <Label FontAttributes="Bold" TextColor="#0F172A" Padding="0,0,5,0">4</Label>
+                <Label FontAttributes="Bold" TextColor="#0F172A" Padding="0,0,5,0">0</Label>
                 <Label Padding="0,0,10,0">Selected</Label>
                 <Button HeightRequest="55" ImageSource="Assets\iconsync.png" BackgroundColor="#0074db" Text="Sync now" TextColor="White"></Button>
             </StackLayout>
