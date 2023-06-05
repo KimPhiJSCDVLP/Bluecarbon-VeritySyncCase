@@ -56,9 +56,9 @@ public partial class HomePage : ContentPage, INotifyPropertyChanged
             Name = "Samsung galaxy SS22",
             Product = "aa",
             Serial = "99191FFAZ004ZHAA",
-            State = DeviceState.Online,
-            IsOnline = true,
-            IsShowWarning = false,
+            State = DeviceState.Offline,
+            IsOnline = false,
+            IsShowWarning = true,
             TransportId = "36"
         };
         var device3 = new DeviceDataDTO()
